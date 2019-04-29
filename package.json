@@ -1,0 +1,29 @@
+{
+  "name": "doi-it-test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "0.9.5"
+  },
+  "devDependencies": {
+    "node-less-chokidar": "^0.4.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "build-css": "node-less-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-less-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
