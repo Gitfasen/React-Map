@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 
-class Menu extends Component {
+class Header extends Component {
   render() {
+		let userUrl      = '/users/';
+		let userUrlTitle = 'Users';
+		if (this.props.isLogin) {
+			userUrl      = '/';
+			userUrlTitle = 'Logout';
+		}
     return (
 			<Navbar bg="light" expand="lg">
 				<Link to="/"><Navbar.Brand>DO-IT Test</Navbar.Brand></Link>
@@ -13,7 +20,7 @@ class Menu extends Component {
 					<Nav className="mr-auto">
 						<Link to="/" className={'nav-link'}>Home</Link>
 						<Link to="/about/" className={'nav-link'}>About</Link>
-						<Link to="/users/" className={'nav-link'}>Users</Link>
+						<Link to={userUrl} className={'nav-link'}>{userUrlTitle}</Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
@@ -21,6 +28,11 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default connect(
+	state => ({
+		isLogin: state.isLogin
+	}),
+	dispatch => ({})
+)(Header);
 
 

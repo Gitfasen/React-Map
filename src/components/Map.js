@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import DG from '2gis-maps';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { ButtonToolbar, Button } from 'react-bootstrap'
 
 class Map extends Component {
-	componentDidMount() {
+	constructor(props) {
+    super(props);
 		const Markers = this.props.markers;
 		let onAddMarker = this.props.onAddMarker;
 		DG.then(function () {
@@ -17,19 +19,26 @@ class Map extends Component {
 				onAddMarker([e.latlng.lat, e.latlng.lng]);
 			});
 		});
-
-		
 	}
   render() {
     return (
-			<div id="map" style={{width: "100%", height: "300px"}}></div>
+			<div>
+				<div id="map" style={{width: "100%", height: "300px"}}></div>
+				<div className={'mapControll'}>
+					<ButtonToolbar>
+						<Button variant="primary" size="lg">Save</Button>
+						<Button variant="secondary" size="lg">Show</Button>
+					</ButtonToolbar>
+				</div>
+			</div>
+			
 		);
   }
 }
 
 export default connect(
 	state => ({
-		markers: state
+		markers: state.markers
 	}),
 	dispatch => ({
     onAddMarker: (Marker) => {

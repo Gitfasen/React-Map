@@ -9,11 +9,18 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-const initialStore = [
-	[54.98, 82.89],
-	[54.98076605428236, 82.90841102600099],
-	[54.97771218642984, 82.87716865539552]
-];
+const initialStore = {
+	markers: [
+		[54.98, 82.89],
+		[54.98076605428236, 82.90841102600099],
+		[54.97771218642984, 82.87716865539552]
+	],
+	users: {
+		login: 'admin',
+		pass: 'admin'
+	},
+	isLogin: false
+};
 
 const Markers = (state = initialStore, action) => {
 	if (action.type === 'ADD_MARKER') {

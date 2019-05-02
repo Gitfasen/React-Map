@@ -6,11 +6,9 @@ class Users extends Component {
   render() {
     return (
 			<div>
-				<h1 className={'title'}>Login</h1>
 				<Row>
-					<Col></Col>
-					<Col><Form/></Col>
-					<Col></Col>
+					<Col><Form title="Login"/></Col>
+					<Col><Form title="Registration"/></Col>
 				</Row>
 			</div>
 		
