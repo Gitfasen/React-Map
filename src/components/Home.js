@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Map from './Map';
 
 class Home extends Component {
   render() {
     return (
 			<div>
-				<div>This is Home</div>
+				<Map/>
 			</div>
 		);
   }
