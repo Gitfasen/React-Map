@@ -24,10 +24,10 @@ const initialStore = {
 
 const Markers = (state = initialStore, action) => {
 	if (action.type === 'ADD_MARKER') {
-    return [
+    return {
       ...state,
-      action.payload
-    ];
+      markers: [...state.markers, action.payload]
+    };
   }
   return state;
 }

@@ -7,7 +7,8 @@ class Map extends Component {
 	constructor(props) {
     super(props);
 		const Markers = this.props.markers;
-		let onAddMarker = this.props.onAddMarker;
+		console.log(Markers);
+		const onAddMarker = this.props.onAddMarker;
 		DG.then(function () {
 			let map = DG.map('map', {
 				center: [54.98, 82.89],
