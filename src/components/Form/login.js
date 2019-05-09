@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
-class Form extends Component {
+class Login extends Component {
 	render() {
 		return (
 			<div className="form-wr">
@@ -20,4 +20,4 @@ class Form extends Component {
 	}
 }
 
-export default Form
+export default Login
