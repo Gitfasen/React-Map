@@ -1,9 +1,9 @@
-import { ADD_MARKER } from '../constants'
+import { marker } from '../constants'
 
 
-export function addMarker(marker) {
+export function addMarker(item) {
 	return {
-			type: ADD_MARKER,
-			payload: marker
+			type: marker.ADD_MARKER,
+			payload: item
 	};
 }

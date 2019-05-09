@@ -1,4 +1,4 @@
-import { ADD_MARKER } from '../constants'
+import { marker } from '../constants'
 
 const initialStore = {
 	markers: [
@@ -9,7 +9,7 @@ const initialStore = {
 };
 
 export default function MarkersReducer(state = initialStore, action) {
-	if (action.type === ADD_MARKER) {
+	if (action.type === marker.ADD_MARKER) {
     return {
       ...state,
       markers: [...state.markers, action.payload]
