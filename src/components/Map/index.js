@@ -21,9 +21,9 @@ class Map extends Component {
 			)
 		});
 		});
-	 }
+	}
 	
-	 componentDidUpdate() {
+	componentDidUpdate() {
 			const { markers } = this.props;
 	
 			markers.map((marker) => {
@@ -31,12 +31,16 @@ class Map extends Component {
 					DG.marker(marker).addTo(this.map)
 				)
 			});
-	 };
+	};
+
   render() {
     return (
 			<div>
 				<div id="map" style={{width: "100%", height: "400px"}}></div>
-				<div className={'mapControll'}></div>
+				<div className={'mapControll'} style={{marginTop: 30 + 'px'}}>
+					<button onClick={this.handleClickGet} type="button" className="btn btn-primary">Get</button>
+					<button onClick={this.handleClickSave} type="button" className="btn btn-success">Save</button>
+				</div>
 			</div>
 			
 		);
@@ -50,6 +54,6 @@ export default connect(
 	dispatch => ({
     onAddMarker: (Marker) => {
 			dispatch(addMarker(Marker))
-    }
+		}
   })
 )(Map);
