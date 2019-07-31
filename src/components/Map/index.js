@@ -79,8 +79,8 @@ class Map extends Component {
 }
 
 export default connect(
-	state => ({
-		markers: state.MarkersReducer.markers
+	( { MarkersReducer } ) => ({
+		markers: MarkersReducer.markers
 	}),
 	dispatch => ({
 		getMarkers : MarkerActions.getMarkers(dispatch)
