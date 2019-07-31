@@ -2,7 +2,7 @@ const Marker = require('../models/Marker-model')
 
 createMarker = (req, res) => {
     const body = req.body
-
+		res.send('createMarker');
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -10,7 +10,10 @@ createMarker = (req, res) => {
         })
     }
 
-    const marker = new Marker(body)
+    const marker = new Marker({
+			let : body.let,
+			lng : body.lng
+		})
 
     if (!marker) {
         return res.status(400).json({ success: false, error: err })
