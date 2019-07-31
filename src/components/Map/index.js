@@ -46,22 +46,20 @@ class Map extends Component {
 			}
 	};
 
-	onSaveMarkers = () => {
-		this.state.newMarkers.map(item =>{
-			fetch('//localhost:2222/api/marker', {
-				method: 'post',
-				headers: {'Content-Type':'application/json'},
-				body: JSON.stringify({
-					lat: item.lat, 
-					lng: item.lng,
-				})
-				}).catch(err => {
-					console.log(err)
-				});
-				return false;
-		})
-		this.props.getMarkers();
-	}
+	onSaveMarkers = async () => {
+		const { getMarkers } = this.props;
+		const { newMarkers } = this.state;
+		
+		const savedMarkers = newMarkers.map(item =>
+			fetch('//localhost:2222/api/marker',
+				{ method: 'post',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ lat: item.lat, lng: item.lng }),
+				}));
+	
+		await Promise.all(savedMarkers);
+		await getMarkers();
+	};
 
   render() {
 		const { getMarkers } = this.props;

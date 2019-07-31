@@ -12,8 +12,8 @@ export default {
 				}
 				
 			})
-			.then(function(myJson) {
-				dispatch({type:marker.success, payload: myJson.data})
+			.then(function({data}) {
+				dispatch({type:marker.success, payload: data})
 			}).catch(err => {
 				console.log(err);
 			});
