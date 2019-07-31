@@ -1,4 +1,4 @@
-import { marker } from '../constants'
+import { marker } from '../constants';
 
 const initialState = {
 	markers: [
