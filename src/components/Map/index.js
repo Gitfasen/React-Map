@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DG from '2gis-maps';
 import { connect } from 'react-redux';
+import MarkerActions from '../../actions/MarkerActions'
 
 class Map extends Component {
 	state = {
@@ -36,15 +37,30 @@ class Map extends Component {
 	componentDidUpdate() {
 			const { markers } = this.props;
 	
-			markers.map((marker) => {
-				return (
-					DG.marker(marker).addTo(this.map)
-				)
-			});
+			if (Array.isArray(markers)) {
+				markers.map((marker) => {
+					return (
+						DG.marker(marker).addTo(this.map)
+					)
+				});
+			}
 	};
 
 	onSaveMarkers = () => {
-		this.props.saveMarkers(this.state.newMarkers);
+		this.state.newMarkers.map(item =>{
+			fetch('//localhost:2222/api/marker', {
+				method: 'post',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify({
+					lat: item.lat, 
+					lng: item.lng,
+				})
+				}).catch(err => {
+					console.log(err)
+				});
+				return false;
+		})
+		this.props.getMarkers();
 	}
 
   render() {
@@ -67,17 +83,6 @@ export default connect(
 		markers: state.MarkersReducer.markers
 	}),
 	dispatch => ({
-		getMarkers: () => {
-			fetch('//localhost:2222/api/markers')
-			.then(function(response) {
-				return response.json();
-			})
-			.then(function(myJson) {
-				dispatch({type:'MARKER_GETALL_SUCCESS', payload: myJson.data})
-			});
-		},
-		saveMarkers: (data) => {
-			console.log('markers= ', data);
-		}
+		getMarkers : MarkerActions.getMarkers(dispatch)
   })
 )(Map);

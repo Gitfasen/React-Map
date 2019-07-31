@@ -1,17 +1,29 @@
 import { marker } from '../constants';
 
-export default function MarkersReducer(state = {markers:[]}, action) {
+const initialState = {
+	markers:[]
+}
+
+export default function(state = initialState, action) {
+	
 	switch(action.type) {
-		case	marker.add :
-			return {
-				...state,
-				markers: [...state.markers, action.payload]
-			}
+
 		case marker.success :
-			return {
-				...state,
-				markers: action.payload
+
+			const result = action.payload.filter(function(o1){
+				return !state.markers.some(function(o2){
+						return o1.id === o2.id;          // assumes unique id
+				});
+			});
+
+			if (result.length > 0) {
+				return {
+					markers: result
+				};
+			}else {
+				return state;
 			}
+			
 		default:
 			return state;
 	}

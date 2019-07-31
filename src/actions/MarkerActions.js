@@ -1,13 +1,22 @@
 import { marker } from '../constants'
 
-export const MarkerActions = {
-	loadMarkers(data) {
-		return {
-			type: marker.success, 
-			payload: data
+export default {
+	getMarkers(dispatch) {
+		return () => {
+			fetch('//localhost:2222/api/markers')
+			.then(function(response) {
+				if (response.status !== 200) {
+					return [];
+				} else {
+					return response.json();
+				}
+				
+			})
+			.then(function(myJson) {
+				dispatch({type:marker.success, payload: myJson.data})
+			}).catch(err => {
+				console.log(err);
+			});
 		}
-	},
-	saveMarker(marker) {
-		console.log(marker);
 	}
 }

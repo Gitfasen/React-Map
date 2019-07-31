@@ -1,8 +1,7 @@
 const Marker = require('../models/Marker-model')
 
 createMarker = (req, res) => {
-    const body = req.body
-		res.send('createMarker');
+		const body = req.body
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -11,7 +10,7 @@ createMarker = (req, res) => {
     }
 
     const marker = new Marker({
-			let : body.let,
+			lat : body.lat,
 			lng : body.lng
 		})
 
