@@ -3,10 +3,10 @@ const Marker = require('../models/Marker-model')
 createMarker = (req, res) => {
 		const body = req.body
     if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a movie',
-        })
+			return res.status(400).json({
+					success: false,
+					error: 'You must provide a movie',
+			})
     }
 
     const marker = new Marker({
@@ -15,24 +15,24 @@ createMarker = (req, res) => {
 		})
 
     if (!marker) {
-        return res.status(400).json({ success: false, error: err })
+			return res.status(400).json({ success: false, error: err })
     }
 
     marker
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: marker._id,
-                message: 'Marker created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'Marker not created!',
-            })
-        })
+			.save()
+			.then(() => {
+				return res.status(201).json({
+					success: true,
+					id: marker._id,
+					message: 'Marker created!',
+				})
+			})
+			.catch(error => {
+				return res.status(400).json({
+					error,
+					message: 'Marker not created!',
+				})
+			})
 }
 
 getMarkers = async (req, res) => {
@@ -49,7 +49,30 @@ getMarkers = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+clearMarkers = (req, res) => {
+	const body = req.body
+	if (!body) {
+		return res.status(400).json({
+				success: false,
+				error: 'You must provide a movie',
+		})
+	}
+
+	if (body.clear) {
+		Marker.remove({}, function(err) {
+			if (err) {
+					console.log(err)
+			} else {
+					res.end('success');
+			}
+	}
+);
+	}
+	
+}
+
 module.exports = {
-    createMarker,
-    getMarkers,
+	createMarker,
+	getMarkers,
+	clearMarkers
 }

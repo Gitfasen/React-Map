@@ -4,7 +4,7 @@
   "scripts": {
     "deploy": "now && now alias",
     "start": "node scripts/start.js",
-    "mongo": "babel-node server/app.js",
+    "mongo": "node server/server.js",
     "now-start": "serve -s ./build",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",

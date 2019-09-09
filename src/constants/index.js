@@ -1,6 +1,7 @@
 export const marker = {
 	add : 'ADD_MARKER',
 	save : 'SAVE_MARKER',
+	clear : 'CLEAR_MARKER',
 
 	request: 'MARKER_GETALL_REQUEST',
 	success: 'MARKER_GETALL_SUCCESS',

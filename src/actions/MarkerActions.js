@@ -10,13 +10,20 @@ export default {
 				} else {
 					return response.json();
 				}
-				
 			})
 			.then(function({data}) {
-				dispatch({type:marker.success, payload: data})
+				dispatch({type:marker.success, payload: data})				
 			}).catch(err => {
 				console.log(err);
 			});
 		}
+	},
+	clearMarkers(dispatch) {
+		fetch('//localhost:2222/api/marker/clear',
+		{ method: 'delete',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ clear: true }),
+		});
+		dispatch({type:marker.clear, payload: ''})
 	}
 }
